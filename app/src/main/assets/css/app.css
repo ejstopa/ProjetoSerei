@@ -85,8 +85,14 @@ h3{
     height: auto;
 }
 
+.img-btn-logout{
+    content: url("../images/logout.png");
+    max-width: 1.5em;
+    height: auto;
+}
+
 .img-btn-schedule{
-    content: url("../images/study_cards.png");
+    content: url("../images/schedule.png");
     max-width: 1.5em;
     height: auto;
 }
