@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+</head>
+<body>
+
+<div class="container-fluid vh-100 min-vh-100 pt-5 background-login">
+    <div class="row mb-3 p-3 cor_nav">
+        <div class="col-12 text-center">
+            <img class=" logo-banner">
+        </div>
+    </div>
+
+    <div class="row mb-2 mx-4">
+        <div class="col px-0 text-center">
+            <h3>
+                Nova conta
+            </h3>
+        </div>
+    </div>
+
+    <form id="form_new_user">
+        <div class="row mb-2 mx-4">
+            <input type="text" class="form-control" id="txt_name" placeholder="Nome" required>
+        </div>
+
+        <div class="row mb-2 mx-4">
+            <input type="email" class="form-control" id="txt_email" placeholder="E-mail" required>
+        </div>
+
+        <div class="row mb-2 mx-4">
+            <input type="password" class="form-control" id="txt_password_1" placeholder="Senha" required>
+        </div>
+
+        <div class="row mb-2 mx-4">
+            <input type="password" class="form-control" id="txt_password_2" placeholder="Confirmar senha" required>
+        </div>
+
+        <div class="container-fluid fixed-bottom">
+            <div class="row mb-5 mx-4">
+                <input type="submit" class="btn btn-primary btn-lg" id="btn_criar_conta" value="Criar conta">
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/new_user.js"></script>
+</body>
+</html>

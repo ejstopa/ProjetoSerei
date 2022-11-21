@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+</head>
+
+<body class="vh-100">
+
+<div class="vh-100 d-flex flex-column container-fluid">
+
+    <div class="row mb-1 p-2 cor_nav">
+        <div class="col-12 text-center">
+            <img class="logo-navigation">
+        </div>
+    </div>
+
+    <div class="overflow-auto my-2 d-flex flex-column flex-fill">
+        <form action="" class="form-control h-100 d-flex flex-column flex-fill" id="form_new_card">
+            <div class="mb-1">
+                <h3 class="text-start">
+                    Baralho
+                </h3>
+            </div>
+
+            <div class="mb-2">
+                <input type="text" class="form-control" id="txt_card_name" placeholder="Nome" required>
+            </div>
+
+            <div class="mb-2">
+                <textarea class="form-control" id="txt_card_description" rows="2" placeholder="Descrição" required></textarea>
+            </div>
+
+            <div class="mb-1">
+                <select class="form-select select-category-new-card" id="select_category" required>
+                    <option value="" hidden selected data-default>Categoria</option>
+                </select>
+            </div>
+
+            <div class="mb-1">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="check_public_card">
+                    <label class="form-check-label" for="check_public_card">
+                        Público
+                    </label>
+                </div>
+            </div>
+
+            <div class="row mb-1">
+                <div class="col">
+                    <h3>
+                        Perguntas
+                    </h3>
+                </div>
+
+                <div class="col text-end">
+                    <button class="btn p-1" id="btn_new_question">
+                        <img src="" class="img-btn-plus-blue img-fluid pb-1">
+                    </button>
+                </div>
+            </div>
+
+            <div class="overflow-auto border mb-5 p-2 rounded-1 d-flex flex-column flex-fill" id="question_container">
+
+
+            </div>
+
+            <div class="container-fluid fixed-bottom">
+                <div class="row mx-1 mb-3">
+                    <div class="col-6 ps-2 pe-1">
+                        <input class="btn btn-success w-100" type="submit" value="Confirmar" id="btn_confirm">
+                    </div>
+
+                    <div class="col-6 ps-1 pe-2">
+                        <input class="btn btn-danger w-100" type="button" value="Cancelar" id="btn_cancel">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/new_card.js"></script>
+<script src="js/question_summary_component.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+</head>
+
+<body>
+
+<div class="container-fluid cor_nav">
+
+    <div class="row mb-1 py-2 pe-0">
+        <div class="col-auto text-center">
+            <img class="logo-navigation">
+        </div>
+
+        <div class="col text-end label-user" id="txt_user">
+
+        </div>
+
+        <div class="col-auto text-center">
+            <button class="btn btn-primary btn-sm p-0" id="btn_logout">
+                Sair
+            </button>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-auto text-center pe-0 py-0">
+            <img src="" class="img-categorias img-fluid pb-1">
+        </div>
+
+        <div class="col mb-1">
+            <select class="select-categories p-0"  id="select_category" required>
+                <option value="" selected data-default>Todas Categorias</option>
+            </select>
+        </div>
+
+        <div class="col-auto text-center py-0">
+            <button class="btn p-0">
+                <img src="" class="img-btn-plus img-fluid pb-1" id="btn_new_card">
+            </button>
+        </div>
+
+        <div class="col-auto text-center py-0">
+            <div class="dropdown py-0" id="select_option">
+                <button type="button" class="btn dropdown py-0" id="btn_option" data-bs-toggle="dropdown">
+                    <img src="" class="img-select-options img-fluid pb-1">
+                </button>
+
+                <ul class="dropdown-menu">
+                    <li><a href="" class="dropdown-item">option 1</a></li>
+                    <li><a href="" class="dropdown-item">option 2</a></li>
+                    <li><a href="" class="dropdown-item">option 3</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-1 ms-0 me-0">
+        <div class="col text-center">
+            <button class="btn border-0" id="btn_schedule">
+                <img src="" class="img-btn-schedule img-fluid">
+            </button>
+        </div>
+
+        <div class="col text-center">
+            <button class="btn border-0" id="btn_study_card">
+                <img src="" class="img-btn-study-card img-fluid">
+            </button>
+        </div>
+
+        <div class="col text-center">
+            <button class="btn border-0" id="btn_analytics">
+                <img src="" class="img-btn-analytics img-fluid">
+            </button>
+        </div>
+    </div>
+
+    <div class="row pb-2 ms-0 me-0">
+        <div class="col btn-marker mx-2" id="btn_schedule_marker"></div>
+        <div class="col bg-primary btn-marker mx-2" id="btn_study_card_marker"></div>
+        <div class="col btn-marker mx-2" id="btn_analytics_marker"></div>
+    </div>
+
+    <dialog class="border-0 cover-block-ui" id="dialog_block_ui">
+
+    </dialog>
+</div>
+
+
+
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/navigation.js"></script>
+</body>
+
+</html>

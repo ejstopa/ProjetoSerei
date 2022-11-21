@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <WebView
+        android:id="@+id/webViewNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/viewBlockUI"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#A60A0A0A"
+            android:visibility="invisible" />
+    </WebView>
+
+    <WebView
+        android:id="@+id/webViewContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+    </WebView>
+
+</LinearLayout>
+
+

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+</head>
+
+<body>
+<div class="vh-100 container-fluid p-2 d-flex flex-column flex-fill">
+    <div class="card shadow mb-2 p-1 bg-light">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-auto pb-2" id="card_public_locker">
+                    <img src="images/lock.png" class="img-locker" id="img_locker">
+                </div>
+
+                <div class="col px-0 fw-bold align-self-center" id="txt_card_name">
+                    Card name
+                </div>
+
+                <div class="col-auto pb-2">
+                    <img src="images/volume_up.png" class="img-speak_question" id="btn_speak_question">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col px-4 py-1">
+                    <img src="images/stop.png" class="img-btn-play" id="btn_pause_card">
+                </div>
+
+                <div class="col-auto align-self-end pe-0 pb-1 text-primary fw-bold" id="txt_question_quantity">
+                </div>
+
+                <div class="col-auto align-self-end ps-1 pb-1">
+                    <img src="images/total_cards.png" class="img-total-cards">
+                </div>
+
+                <div class="col-auto align-self-end pe-0 pb-1 text-primary fw-bold" id="txt_target_questions">
+                </div>
+
+                <div class="col-auto align-self-end ps-1">
+                    <img src="images/alvo.png" class="img-target">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mb-5 p-5 question-card d-flex flex-column flex-fill" id="card_quesiton">
+        <div class="card p-1 shadow question-card-inner bg-light d-flex flex-column flex-fill" id="card_question_inner_container">
+            <div class="container-fluid question-card-front d-flex flex-column flex-fill">
+                <div class="row">
+                    <div class="col-auto" id="txt_question_number">
+                    </div>
+
+                    <div class="col ps-0" id="txt_question">
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column flex-fill p-4">
+                    <div class="img-question d-flex flex-column flex-fill" id="question_image">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container-fluid question-card-back d-flex flex-column flex-fill">
+                <div class="row">
+                    <div class="col ms-2" id="txt_answer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid pb-5 px-5 fixed-bottom">
+        <div class="row mx-2">
+            <button class="btn btn-primary btn" id="btn_turn_question">
+                Resposta
+            </button>
+        </div>
+
+        <div class="row mx-2">
+            <div class="col-6 ps-0 pe-1">
+                <button class="btn btn-success btn w-100" id="btn_right_answer" hidden>
+                    Acertei
+                </button>
+            </div>
+
+            <div class="col-6 ps-1 pe-0">
+                <button class="btn btn-danger btn w-100" id="btn_wrong_answer" hidden>
+                    Errei
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <dialog class="border-0 p-0 rounded bg-light shadow" id="dialog_card_finished">
+        <div class="card p-2 shadow bg-light">
+            <div class="row mt-0 mb-2">
+                <div class="col text-center fs-2">
+                    Parabéns!
+                </div>
+            </div>
+
+            <div class="row mb-3 fs-5">
+                <div class="col">
+                    Você terminou seu estudo diário.
+                </div>
+            </div>
+
+            <div class="row mb-1">
+                <div class="col-auto">
+                    Desempenho:
+                </div>
+            </div>
+
+            <div class="row mb-0">
+                <div class="col-auto text-success" id=txt_right_answers>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-auto text-danger" id=txt_wrong_answers>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-end" id="btn_card_finished">
+                    <div class="btn btn-outline-primary">
+                        OK
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </dialog>
+
+</div>
+
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/play_card.js"></script>
+</body>
+
+</html>

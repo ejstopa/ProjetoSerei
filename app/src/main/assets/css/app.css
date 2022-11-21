@@ -1,0 +1,189 @@
+h3{
+
+    color: rgb(32, 56, 100)
+}
+
+.label-user{
+
+    color: white;
+}
+
+.label-recuperar-senha{
+
+    text-decoration: none;
+}
+
+.label-cadastrar{
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.background-login{
+
+    background-image: url("../images/background_login1.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 70%;
+}
+
+.cor_nav{
+
+    background-color: rgb(32, 56, 100);
+}
+
+.logo-banner{
+    content: url("../images/logo_claro.png");
+    max-width: 50%;
+    height: auto;
+}
+
+.logo-navigation{
+    content: url("../images/logo_claro.png");
+    max-width: 5em;
+    height: auto;
+}
+
+.select-categories{
+    border: 0px;
+    color: white;
+    font-weight: bold;
+    background: transparent;
+}
+
+.select-categories:focus{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.img-categorias{
+    content: url("../images/category.png");
+    max-width: 1.5em;
+    height: auto;
+}
+
+.img-btn-plus{
+    content: url("../images/plus.png");
+    max-width: 1em;
+    height: auto;
+}
+
+.img-btn-plus-blue{
+    content: url("../images/plus_blue.png");
+    max-width: 1em;
+    height: auto;
+}
+
+.img-select-options{
+    content: url("../images/options_01.png");
+    max-width: 0.35em;
+    height: auto;
+}
+
+.img-select-options-black{
+    content: url("../images/options_02.png");
+    max-width: 0.30em;
+    height: auto;
+}
+
+.img-btn-schedule{
+    content: url("../images/study_cards.png");
+    max-width: 1.5em;
+    height: auto;
+}
+
+.img-btn-study-card{
+    content: url("../images/study_cards.png");
+    max-width: 1.5em;
+    height: auto;
+}
+
+.img-btn-analytics{
+    content: url("../images/analytics.png");
+    max-width: 1.5em;
+    height: auto;
+}
+
+.img-locker{
+    max-width: 1.3em;
+    height: auto;
+}
+
+.img-btn-play{
+    max-width: 2.5em;
+    height: auto;
+}
+
+.img-total-cards{
+    max-width: 1.1em;
+    height: auto;
+}
+
+.img-target{
+    max-width: 2.2em;
+    height: auto;
+}
+
+.img-next-question{
+    max-width: 1em;
+    height: auto;
+}
+
+.btn-marker{
+
+    height: 0.2em;
+}
+
+.select-category-new-card{
+    color:  #636c72;
+}
+
+.question-card{
+    perspective: 1000px;
+    background-color: transparent;
+}
+
+.question-card-inner{
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+     /* filter: blur(0); */
+}
+
+.question-card-front{
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+}
+
+.question-card-back{
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+}
+
+.flip-card{
+    transform: rotateY(180deg);
+}
+
+
+.img-question{
+     background-repeat: no-repeat;
+     background-size: contain;
+     background-position: 50%;
+}
+
+.cover-block-ui{
+    background-color: transparent;
+}
+
+.img-speak_question{
+    max-width: 1.7em;
+    height: auto;
+}
+
+

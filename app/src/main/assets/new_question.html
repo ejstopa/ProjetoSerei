@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+</head>
+
+<body class="vh-100">
+
+<div class="vh-100 d-flex flex-column container-fluid">
+    <div class="row mb-1 p-2 cor_nav">
+        <div class="col-12 text-center">
+            <img class="logo-navigation">
+        </div>
+    </div>
+
+    <div class="overflow-auto my-2 d-flex flex-column flex-fill">
+        <form action="" class="form-control h-100 d-flex flex-column flex-fill" id="form_new_question">
+            <div class="mb-1">
+                <h3 class="text-start" id="label_question_action">
+                </h3>
+            </div>
+
+            <label class="mb-1" for="txt_question">Pergunta:</label>
+            <textarea class="form-control mb-3" id="txt_question" rows="2" placeholder="Texto da pergunta" required></textarea>
+
+            <label class="mb-1" for="txt_answer">Resposta:</label>
+            <textarea class="form-control mb-3" id="txt_answer" rows="2" placeholder="Texto da resposta" required></textarea>
+
+            <label class="mb-1" for="image_question">Imagem(opicional):</label>
+            <div class="input-group mb-2">
+                <input class="btn btn-primary" type="button" value="Procurar" id="btn_open_image">
+                <input class="form-control" type="text" id="txt_image_path" placeholder="Nenhuma imagem escolhida" readonly>
+            </div>
+            <img src="" class="mb-2" id="image_question" rows="2" placeholder="Imagem(opicional)"></img>
+
+            <div class="container-fluid fixed-bottom">
+                <div class="row mx-1 mb-3">
+                    <div class="col-6 ps-2 pe-1">
+                        <input class="btn btn-success w-100" type="submit" value="Confirmar" id="btn_confirm">
+                    </div>
+
+                    <div class="col-6 ps-1 pe-2">
+                        <input class="btn btn-danger w-100" type="button" value="Cancelar" id="btn_cancel">
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+
+    </form>
+
+
+</div>
+
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/new_question.js"></script>
+</body>
+
+</html>
