@@ -87,8 +87,9 @@ h3{
 
 .img-btn-logout{
     content: url("../images/logout.png");
-    max-width: 1.5em;
+    max-width:1.5em;
     height: auto;
+    color: white;
 }
 
 .img-btn-schedule{
