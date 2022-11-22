@@ -11,12 +11,14 @@ public final class Constants {
     public static final String filedStudyingQuestionsTargetOrder = "targetOrder";
 
     public static final String collectionCategories = "categories";
+    public static final String fieldCategory = "category";
     public static final String documentCategoriesList = "categoriesList";
     public static final String arrayCategories = "categories";
     public static final String valueAllCategories = "Todas Categorias";
 
 
     public static final String collectionCards = "cards";
+    public static final String fieldPublicCard = "publicCard";
 
     public static final String collectionQuestions = "questions";
     public static final String collectionQuestionSummary = "questionSummary";

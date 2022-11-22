@@ -14,6 +14,7 @@ import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         webViewContent = (WebView) findViewById(R.id.webViewContent);
         webViewContent.addJavascriptInterface(this, "MainActivity" );
         webViewContent.getSettings().setJavaScriptEnabled(true);
+
+
 
     }
 
@@ -220,8 +223,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String userId = auth.getCurrentUser().getUid();
 
-        StudyingCardModel studyingCardModel = new StudyingCardModel();
-        studyingCardsMap = studyingCardModel.GetUserStudyingCards(userId);
+        studyingCardsMap = GetStudyingCardsDatabase(userId);
     }
 
     private void SortStudyingQuestionList(String cardId){
@@ -375,6 +377,14 @@ public class MainActivity extends AppCompatActivity {
 
     // region Database
 
+    private Map<String, StudyingCard> GetStudyingCardsDatabase(String userId){
+
+        StudyingCardModel studyingCardModel = new StudyingCardModel();
+        studyingCardsMap = studyingCardModel.GetUserStudyingCards(userId);
+
+        return studyingCardsMap;
+    }
+
     private Question GetQuestionDatabase(String cardId, String questionId){
 
         QuestionModel questionModel = new QuestionModel(this);
@@ -385,6 +395,25 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             return null;
+        }
+
+    }
+
+    @JavascriptInterface
+    public void DeleteStudyingCardDatabase(String cardId){
+
+        StudyingCardModel studyingCardModel = new StudyingCardModel();
+
+        if (studyingCardModel.DeleteStudyingCard(GetCurrentUserId(), cardId)){
+
+            MessageStoppedStudyingCard();
+            SetStudyingCardsMap();
+            ShowStudyingCardsContent();
+
+        }
+        else{
+
+            MessageErrorStoppingStudyingCard();
         }
 
     }
@@ -406,7 +435,18 @@ public class MainActivity extends AppCompatActivity {
 
     // endregion
 
+    // region Messages
+    private void MessageStoppedStudyingCard(){
 
+        Toast.makeText(this, "Você deixou de estudar esse baralho", Toast.LENGTH_SHORT).show();
+    }
+
+    private void MessageErrorStoppingStudyingCard(){
+
+        Toast.makeText(this, "Ocorreu um erro ao tentar deixar de estudar esse baralho", Toast.LENGTH_SHORT).show();
+    }
+
+    // endregion
 
 
 }

@@ -81,7 +81,24 @@ public class StudyingCardModel {
         return studyingCardsMap;
     }
 
+    public boolean DeleteStudyingCard(String userId, String cardId){
 
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = database.collection(collectionUsers).document(userId).
+                collection(collectionStudyingCards).document(cardId);
+
+        Task task1 = documentReference.delete();
+
+        do {
+        }while (!task1.isComplete());
+
+        if (task1.isSuccessful()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
 
 

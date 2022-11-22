@@ -1,7 +1,7 @@
 
-const cardTemplate = document.createElement('template');
+const publicCardTemplate = document.createElement('template');
 
-cardTemplate.innerHTML = `
+publicCardTemplate.innerHTML = `
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/all.min.css">
@@ -10,7 +10,7 @@ cardTemplate.innerHTML = `
  <div class="card mx-0 mb-2 p-1 bg-light">
         <div class="row">
             <div class="col-auto pb-2" id="card_public_locker">
-                <img src="images/lock.png" class="img-locker" id="img_locker">
+                <img src="images/unlock.png" class="img-locker" id="img_locker">
             </div>
 
             <div class="col px-0 fw-bold align-self-center" id="txt_card_name">
@@ -24,8 +24,7 @@ cardTemplate.innerHTML = `
                     </button>
 
                     <ul class="dropdown-menu">
-                        <li><a href="" class="dropdown-item" id="btn_edit_card">Editar baralho</a></li>
-                        <li><a href="" class="dropdown-item" id="btn_delete_card">Excluir baralho</a></li>
+                        <li><a href="" class="dropdown-item" id="btn_stop_studying_card">Deixar de estudar</a></li>
                     </ul>
                 </div>
             </div>
@@ -59,7 +58,7 @@ cardTemplate.innerHTML = `
 `;
 
 
-class StudyingCardSummaryComponent extends HTMLElement{
+class StudyingPublicCardSummaryComponent extends HTMLElement{
 
     static get observedAttributes() { return ["card_id", "card_name", "question_quantity", "target_questions"]; };
 
@@ -70,16 +69,15 @@ class StudyingCardSummaryComponent extends HTMLElement{
 
     connectedCallback() {
 
-        this.innerHTML = cardTemplate.innerHTML;
+        this.innerHTML = publicCardTemplate.innerHTML;
         defineComponentData(this);
         let cardId = this.getAttribute("card_id");
 
-        this.querySelector("#btn_edit_card").addEventListener("click", function(event){
+        this.querySelector("#btn_stop_studying_card").addEventListener("click", function(event){
 
             event.preventDefault();
-            window.history.back();
 
-            MainActivity.ShowEditCardActivity(cardId);
+            MainActivity.DeleteStudyingCardDatabase(cardId);
         });
 
         this.querySelector("#btn_play_card").addEventListener("click", function(event){
@@ -117,6 +115,7 @@ function updateComponentAttribute(element, attributeName, attributeNewValue){
     }
 }
 
-customElements.define('studying-card-summary', StudyingCardSummaryComponent);
+
+customElements.define('studying-public-card-summary', StudyingPublicCardSummaryComponent);
 
 

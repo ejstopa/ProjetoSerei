@@ -4,13 +4,23 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import org.checkerframework.checker.units.qual.C;
+
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CardModel {
 
-    private String collectionCards = Constants.collectionCards;
+    private final String collectionCards = Constants.collectionCards;
+    private final String fieldCategory = Constants.fieldCategory;
+    private final String fieldPublicCard = Constants.fieldPublicCard;
 
     public CardModel() {
 
@@ -18,8 +28,8 @@ public class CardModel {
 
     public String CreateCard(Card card){
 
-        FirebaseFirestore dataBase = FirebaseFirestore.getInstance();
-        DocumentReference cardReference = dataBase.collection(collectionCards).document();
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        DocumentReference cardReference = database.collection(collectionCards).document();
         String cardId = cardReference.getId();
 
         Task task1 = cardReference.set(card);
@@ -78,4 +88,32 @@ public class CardModel {
 
     }
 
+    public Map<String, Card> GetPublicCardsByCategory(String category, int limit){
+
+        Map<String, Card> filteredCardsList = new HashMap<>();
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+
+        Query query = database.collection(collectionCards).whereEqualTo(fieldCategory, category).
+                whereEqualTo(fieldPublicCard, true).limit(limit);
+
+        Task task1 = query.get();
+
+        do {
+        }while (!task1.isComplete());
+
+        if (!task1.isSuccessful()){
+            return null;
+        }
+
+        QuerySnapshot querySnapshot = (QuerySnapshot)task1.getResult();
+
+        for (QueryDocumentSnapshot document : querySnapshot){
+
+            String cardId = document.getId();
+            filteredCardsList.put(cardId, document.toObject(Card.class));
+        }
+
+        return filteredCardsList;
+
+    }
 }

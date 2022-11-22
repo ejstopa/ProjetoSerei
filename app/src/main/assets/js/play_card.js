@@ -151,11 +151,11 @@ function setQuestionInformation(){
 
 function setAnswerInformation(){
 
-    document.querySelector("#txt_answer").innerHTML = "Resposta:  " + playingQuestion.Answer;
+    document.querySelector("#txt_answer").innerHTML = "<b>Resposta:</b>  " + playingQuestion.Answer;
 
         if (speakQuestionOn){
             setTimeout(function(){
-                MainActivity.SpeakText(document.querySelector("#txt_answer").innerHTML);
+                MainActivity.SpeakText(document.querySelector("#txt_answer").innerText);
             },1000)
         }
 }

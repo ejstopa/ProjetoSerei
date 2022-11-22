@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -168,8 +169,8 @@ public class NewCardActivity extends AppCompatActivity {
             return;
         }
 
-        StudyingCard studyingCard1 = CreateStudyingCardObject(newCardId, txtCardName, txtCardDescription, txtCardCategory,
-                checkPublicCard, questionQuantity, userId, questionQuantity);
+        StudyingCard studyingCard1 = CreateStudyingCardObject(this, newCardId, txtCardName, txtCardDescription, txtCardCategory,
+                checkPublicCard, questionQuantity, userId, questionQuantity, true);
 
         if (!CreateStudyingCardDatabase(userId, studyingCard1, newCardId)){
             return;
@@ -205,8 +206,8 @@ public class NewCardActivity extends AppCompatActivity {
             return;
         }
 
-        StudyingCard studyingCard1 = CreateStudyingCardObject(cardId, txtCardName, txtCardDescription, txtCardCategory,
-                checkPublicCard, questionQuantity, userId, questionQuantity);
+        StudyingCard studyingCard1 = CreateStudyingCardObject(this, cardId, txtCardName, txtCardDescription, txtCardCategory,
+                checkPublicCard, questionQuantity, userId, questionQuantity, true);
 
         if (studyingCard1 == null){
             return;
@@ -364,13 +365,13 @@ public class NewCardActivity extends AppCompatActivity {
 
     }
 
-    private StudyingCard CreateStudyingCardObject(String cardId, String txtCardName, String txtCardDescription, String txtCardCategory,
-                                                  boolean checkPublicCard, int questionQuantity, String userId, int targetQuestions){
+    public static StudyingCard CreateStudyingCardObject(Context context, String cardId, String txtCardName, String txtCardDescription, String txtCardCategory,
+                                                  boolean checkPublicCard, int questionQuantity, String userId, int targetQuestions, boolean ownCard){
 
-        List<StudyingQuestion> studyingQuestionsList = CreateStudyingQuestionsList(cardId);
+        List<StudyingQuestion> studyingQuestionsList = CreateStudyingQuestionsList(cardId, context);
 
         if (studyingQuestionsList.size() == 0){
-            MessageErrorAddingCard();
+            MessageErrorAddingCard(context);
             return null;
         }
 
@@ -382,17 +383,17 @@ public class NewCardActivity extends AppCompatActivity {
         card1.setQuestionQuantity(questionQuantity);
         card1.setUserId(userId);
         card1.setTargetQuestions(targetQuestions);
-        card1.setOwnCard(true);
+        card1.setOwnCard(ownCard);
         card1.setStudyingQuestionsList(studyingQuestionsList);
 
         return card1;
     }
 
-    private List<StudyingQuestion> CreateStudyingQuestionsList(String cardId){
+    public static List<StudyingQuestion> CreateStudyingQuestionsList(String cardId, Context context){
 
         List<StudyingQuestion> studyingQuestionsList = new ArrayList<>();
 
-        QuestionModel questionModel = new QuestionModel(this);
+        QuestionModel questionModel = new QuestionModel(context);
         Map<String, Object> questionSummaryList = questionModel.GetQuestionsSummaryList(cardId);
 
         for (Map.Entry question : questionSummaryList.entrySet()){
@@ -469,7 +470,7 @@ public class NewCardActivity extends AppCompatActivity {
         StudyingCardModel studyingCardModel1 = new StudyingCardModel();
 
         if (!studyingCardModel1.CreateCard(userId, card, cardId)){
-            MessageErrorAddingCard();
+            MessageErrorAddingCard(this);
             return false;
         }
         else{
@@ -529,9 +530,9 @@ public class NewCardActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-    public void MessageErrorAddingCard(){
+    public static void MessageErrorAddingCard(Context context){
         CharSequence message = "Ocorreu um erro ao tentar adicionar o baralho ao seus baralhos.";
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
     public void MessageErrorGettingCard(){
