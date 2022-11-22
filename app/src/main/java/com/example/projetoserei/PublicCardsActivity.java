@@ -20,6 +20,7 @@ public class PublicCardsActivity extends AppCompatActivity {
 
         webViewContent = (WebView) findViewById(R.id.webViewPublicCards);
         webViewContent.addJavascriptInterface(this, "PublicCardsActivity" );
+        webViewContent.addJavascriptInterface(new CategoryModel(this), "CategoryModel" );
         webViewContent.getSettings().setJavaScriptEnabled(true);
         webViewContent.loadUrl("file:///android_asset/public_cards.html");
 
