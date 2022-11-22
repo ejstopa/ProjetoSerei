@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+</head>
+
+<body class="vh-100">
+
+<div class="vh-100 d-flex flex-column container-fluid">
+    <div class="row mb-1 p-2 cor_nav">
+        <div class="col-12 text-center">
+            <img class="logo-navigation">
+        </div>
+    </div>
+
+    <div class="overflow-auto my-2 d-flex flex-column flex-fill">
+        <form action="" class="form-control h-100 d-flex flex-column flex-fill" id="form_new_question">
+            <div class="mb-1">
+                <h3 class="text-start">
+                    Baralhos Públicos
+                </h3>
+            </div>
+
+            <div class="mb-4">
+                <select class="form-select select-category-new-card" id="select_category" required>
+                    <option value="" hidden selected data-default>Escolha uma categoria</option>
+                </select>
+            </div>
+
+            <div class="mb-1">
+                Baralhos Encontrados:
+            </div>
+
+
+            <div class="overflow-auto border mb-5 p-2 rounded-1 d-flex flex-column flex-fill" id="question_container">
+
+
+            </div>
+
+            <div class="container-fluid fixed-bottom">
+                <div class="row mx-1 mb-3">
+                    <div class="col px-2">
+                        <button  class="btn btn-primary w-100 px-0"  id="btn_my_cards">
+                            Voltar para Meus Baralhos
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+    </form>
+
+
+</div>
+
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/public_cards.js"></script>
+</body>
+
+</html>

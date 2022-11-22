@@ -125,6 +125,13 @@ public class MainActivity extends AppCompatActivity {
         startActivityIntent.launch(intent1);
     }
 
+    @JavascriptInterface
+    public void ShowPublicCardsActivity(){
+
+        Intent intent1 = new Intent(MainActivity.this, PublicCardsActivity.class);
+        startActivity(intent1);
+    }
+
     // endregion
 
     // region Content Functions

@@ -3,6 +3,8 @@ h3{
     color: rgb(32, 56, 100)
 }
 
+
+
 .label-user{
 
     color: white;
@@ -64,6 +66,12 @@ h3{
 .img-btn-plus{
     content: url("../images/plus.png");
     max-width: 1em;
+    height: auto;
+}
+
+.img-btn-search{
+    content: url("../images/search.png");
+    max-width: 1.3em;
     height: auto;
 }
 

@@ -16,6 +16,11 @@ document.querySelector("#btn_new_card").addEventListener("click", function(){
     MainActivity.ShowNewCardActivity();
 });
 
+document.querySelector("#btn_public_cards").addEventListener("click", function(){
+
+    MainActivity.ShowPublicCardsActivity();
+});
+
 document.querySelector("#select_category").addEventListener("change", function(event){
 
     let selectCategories = event.target;
