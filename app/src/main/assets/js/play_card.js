@@ -11,6 +11,7 @@ window.addEventListener("load", function(){
     setQuestionInformation();
 });
 
+
 document.querySelector("#btn_turn_question").addEventListener("click", function(event){
 
     let questionCardInner = document.querySelector("#card_question_inner_container");
@@ -177,6 +178,7 @@ function showCardFinishedMessage(){
 
 function finishStudying(){
 
+    MainActivity.UpdateStudyingCardDatabase();
     MainActivity.ShowStudyingCardsContent();
 
 }

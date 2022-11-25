@@ -3,14 +3,11 @@ package com.example.projetoserei;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class StudyingCardModel {
@@ -100,6 +97,23 @@ public class StudyingCardModel {
         }
     }
 
+    public boolean UpdateStudyingCard(String userId, String cardId, StudyingCard card){
 
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = database.collection(collectionUsers).document(userId).
+                collection(collectionStudyingCards).document(cardId);
+
+        Task task1 = documentReference.set(card);
+
+        do {
+        }while (!task1.isComplete());
+
+        if (task1.isSuccessful()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
 }

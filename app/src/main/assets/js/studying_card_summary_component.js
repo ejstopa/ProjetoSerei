@@ -25,6 +25,7 @@ cardTemplate.innerHTML = `
 
                     <ul class="dropdown-menu">
                         <li><a href="" class="dropdown-item" id="btn_edit_card">Editar baralho</a></li>
+                        <li><a href="" class="dropdown-item" id="btn_statistics">Ver Estatísticas</a></li>
                         <li><a href="" class="dropdown-item" id="btn_delete_card">Excluir baralho</a></li>
                     </ul>
                 </div>
@@ -49,7 +50,7 @@ cardTemplate.innerHTML = `
             </div>
 
             <div class="col-auto align-self-end ps-1">
-                <img src="images/alvo.png" class="img-target">
+                <img src="images/alvo.png" class="img-target" id="img_target_questions">
             </div>
         </div>
  </div>
@@ -89,6 +90,14 @@ class StudyingCardSummaryComponent extends HTMLElement{
 
             MainActivity.ShowPlayCardContent(cardId);
         });
+
+         this.querySelector("#img_target_questions").addEventListener("click", function(event){
+
+            event.preventDefault();
+            window.history.back();
+
+            MainActivity.ResetStudyingCardTargetQuestionsDatabase(cardId);
+         });
 
     }
 

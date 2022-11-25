@@ -11,10 +11,6 @@ function updateStudyingCards(studyingCardsMapJson){
         let studyingCardsContainer = document.querySelector("#studying_cards_container");
         studyingCardsContainer.innerHTML = "";
 
-//        let studyingCardsSortedKeys = Object.keys(studyingCardsMap).sort(function(a,b){
-//            return (studyingCardsMap[a].Name > studyingCardsMap[b].Name) ? 1 : ((studyingCardsMap[b].Name > studyingCardsMap[a].Name) ? -1 : 0)
-//            });
-
         let studyingCardsSortedKeys = Object.keys(studyingCardsMap).sort(function(a,b){
 
             if (studyingCardsMap[a].OwnCard < studyingCardsMap[b].OwnCard){

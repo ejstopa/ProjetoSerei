@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 
 import java.util.Base64;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
             ShowLoginActivity();
         }
         else{
-            SetStudyingCardsMap();
             ShowStudyingCardsContent();
             CreateTextSpeakerObject();
         }
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed(){
 
         if (playingCardId != null){
+
             ShowStudyingCardsContent();
         }
     }
@@ -145,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
             textSpeaker.Stop();
         }
 
+        SetStudyingCardsMap();
         playingCardId = null;
         playingQuestionIndex = 0;
 
@@ -230,22 +232,31 @@ public class MainActivity extends AppCompatActivity {
 
         List<StudyingQuestion> StudyingQuestionsList = GetStudyingQuestionsList(cardId);
 
-
-
         StudyingQuestionsList.sort(Comparator.comparing(StudyingQuestion::getTargetOrder));
+        Collections.reverse(StudyingQuestionsList);
     }
 
     @JavascriptInterface
     public boolean SetNextQuestion(){
 
+        StudyingCard playingCard = GetPlayingCard();
+        playingCard.getStudyingQuestionsList().get(playingQuestionIndex).setTargetOrder(0);
+        SetStudyingCardTargetQuestions();
         playingQuestionIndex ++;
 
-        if (playingQuestionIndex <= GetStudyingQuestionsList(playingCardId).size() -1){
+        if (GetTargetQuestionsRemaining() > 0 &&
+                GetStudyingQuestionsList(playingCardId).get(playingQuestionIndex).getTargetOrder() != 0){
             return true;
         }
         else{
             return false;
         }
+    }
+
+    private void SetStudyingCardTargetQuestions(){
+
+        int targetQuestions = GetPlayingCard().getStudyingQuestionsList().stream().filter(e -> e.getTargetOrder() != 0).collect(Collectors.toList()).size();
+        GetPlayingCard().setTargetQuestions(targetQuestions);
     }
 
     @JavascriptInterface
@@ -269,6 +280,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
     //endregion
 
@@ -322,8 +334,7 @@ public class MainActivity extends AppCompatActivity {
     @JavascriptInterface
     public int GetTargetQuestionsRemaining(){
 
-        int targetQuestionsQuantity = GetPlayingCard().getTargetQuestions();
-        int TargetQuestionsRemaining = targetQuestionsQuantity - playingQuestionIndex;
+        int TargetQuestionsRemaining = GetPlayingCard().getTargetQuestions();
 
         return  TargetQuestionsRemaining;
     }
@@ -357,6 +368,7 @@ public class MainActivity extends AppCompatActivity {
 
         return questionJson;
     }
+
 
 
     // endregion
@@ -407,9 +419,7 @@ public class MainActivity extends AppCompatActivity {
         if (studyingCardModel.DeleteStudyingCard(GetCurrentUserId(), cardId)){
 
             MessageStoppedStudyingCard();
-            SetStudyingCardsMap();
             ShowStudyingCardsContent();
-
         }
         else{
 
@@ -433,6 +443,35 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @JavascriptInterface
+    public boolean UpdateStudyingCardDatabase(){
+
+        StudyingCard studyingCard = GetPlayingCard();
+        StudyingCardModel studyingCardModel = new StudyingCardModel();
+
+        if (studyingCardModel.UpdateStudyingCard(GetCurrentUserId(), playingCardId, studyingCard)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    @JavascriptInterface
+    public void ResetStudyingCardTargetQuestionsDatabase(String cardId){
+
+        playingCardId = cardId;
+
+        StudyingCard studyingCard = studyingCardsMap.get(cardId);
+        studyingCard.getStudyingQuestionsList().forEach(e -> e.setTargetOrder(1));
+        SetStudyingCardTargetQuestions();
+
+        UpdateStudyingCardDatabase();
+        ShowStudyingCardsContent();
+
+    }
+
     // endregion
 
     // region Messages
@@ -447,6 +486,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // endregion
+
 
 
 }

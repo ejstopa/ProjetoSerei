@@ -9,6 +9,7 @@ public final class Constants {
     public static final String arrayStudyingQuestions = "studyingQuestions";
     public static final String filedStudyingQuestionsId = "id";
     public static final String filedStudyingQuestionsTargetOrder = "targetOrder";
+    public static final String fieldStudyingCardTargetQuestions = "targetQuestions";
 
     public static final String collectionCategories = "categories";
     public static final String fieldCategory = "category";
