@@ -136,6 +136,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent1);
     }
 
+    @JavascriptInterface
+    public void ShowCardStatisticsActivity(String cardId){
+
+        String studyingCardJson = new Gson().toJson(studyingCardsMap.get(cardId));
+
+        Intent intent1 = new Intent(MainActivity.this, CardStatisticsActivity.class);
+        intent1.putExtra("studyingCardJson", studyingCardJson);
+        startActivity(intent1);
+    }
     // endregion
 
     // region Content Functions

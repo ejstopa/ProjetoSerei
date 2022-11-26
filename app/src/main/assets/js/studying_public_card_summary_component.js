@@ -24,7 +24,7 @@ publicCardTemplate.innerHTML = `
                     </button>
 
                     <ul class="dropdown-menu">
-                        <li><a href="" class="dropdown-item" id="btn_statistics">Ver Estatísticas</a></li>
+                        <li><a href="" class="dropdown-item" id="btn_card_statistics">Ver estatísticas</a></li>
                         <li><a href="" class="dropdown-item" id="btn_stop_studying_card">Deixar de estudar</a></li>
                     </ul>
                 </div>
@@ -86,6 +86,14 @@ class StudyingPublicCardSummaryComponent extends HTMLElement{
             event.preventDefault();
 
             MainActivity.ShowPlayCardContent(cardId);
+        });
+
+        this.querySelector("#btn_card_statistics").addEventListener("click", function(event){
+
+            event.preventDefault();
+            window.history.back();
+
+            MainActivity.ShowCardStatisticsActivity(cardId);
         });
 
         this.querySelector("#img_target_questions").addEventListener("click", function(event){

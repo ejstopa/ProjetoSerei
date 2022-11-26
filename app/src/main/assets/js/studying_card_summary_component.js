@@ -25,7 +25,7 @@ cardTemplate.innerHTML = `
 
                     <ul class="dropdown-menu">
                         <li><a href="" class="dropdown-item" id="btn_edit_card">Editar baralho</a></li>
-                        <li><a href="" class="dropdown-item" id="btn_statistics">Ver Estatísticas</a></li>
+                        <li><a href="" class="dropdown-item" id="btn_card_statistics">Ver estatísticas</a></li>
                         <li><a href="" class="dropdown-item" id="btn_delete_card">Excluir baralho</a></li>
                     </ul>
                 </div>
@@ -89,6 +89,14 @@ class StudyingCardSummaryComponent extends HTMLElement{
             window.history.back();
 
             MainActivity.ShowPlayCardContent(cardId);
+        });
+
+        this.querySelector("#btn_card_statistics").addEventListener("click", function(event){
+
+            event.preventDefault();
+            window.history.back();
+
+            MainActivity.ShowCardStatisticsActivity(cardId);
         });
 
          this.querySelector("#img_target_questions").addEventListener("click", function(event){
