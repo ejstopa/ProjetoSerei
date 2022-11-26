@@ -44,7 +44,7 @@ publicCardTemplate.innerHTML = `
                 <img src="images/total_cards.png" class="img-total-cards">
             </div>
 
-            <div class="col-auto align-self-end pe-0 pb-1 text-primary fw-bold" id="txt_target_quesitons">
+            <div class="col-auto align-self-end pe-0 pb-1 text-primary fw-bold" id="txt_target_questions">
                 10
             </div>
 
@@ -84,7 +84,6 @@ class StudyingPublicCardSummaryComponent extends HTMLElement{
         this.querySelector("#btn_play_card").addEventListener("click", function(event){
 
             event.preventDefault();
-            window.history.back();
 
             MainActivity.ShowPlayCardContent(cardId);
         });
@@ -110,7 +109,7 @@ function defineComponentData(element){
 
     element.querySelector("#txt_card_name").innerHTML =  element.getAttribute("card_name");
     element.querySelector("#txt_question_quantity").innerHTML =  element.getAttribute("question_quantity");
-    element.querySelector("#txt_target_quesitons").innerHTML =  element.getAttribute("target_questions");
+    element.querySelector("#txt_target_questions").innerHTML =  element.getAttribute("target_questions");
 
 }
 

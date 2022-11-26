@@ -28,4 +28,5 @@ public class StudyingQuestion {
     public void setTargetOrder(int targetOrder) {
         this.targetOrder = targetOrder;
     }
+
 }

@@ -12,6 +12,7 @@ public class StudyingCard  extends  Card{
     private int TargetQuestions;
     private boolean OwnCard;
     private List<StudyingQuestion> StudyingQuestionsList;
+    private List<StudyingCardPlay> StudyingCardPlaysList;
 
     public Timestamp getAddedWhen() {
         return AddedWhen;
@@ -44,5 +45,13 @@ public class StudyingCard  extends  Card{
     public void setStudyingQuestionsList(List<StudyingQuestion> studyingQuestionsList) {
 
         StudyingQuestionsList = studyingQuestionsList;
+    }
+
+    public List<StudyingCardPlay> getStudyingCardPlaysList() {
+        return StudyingCardPlaysList;
+    }
+
+    public void setStudyingCardPlaysList(List<StudyingCardPlay> studyingCardPlaysList) {
+        StudyingCardPlaysList = studyingCardPlaysList;
     }
 }

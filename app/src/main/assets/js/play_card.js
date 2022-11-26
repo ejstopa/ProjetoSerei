@@ -52,7 +52,7 @@ document.querySelector("#btn_right_answer").addEventListener("click", function()
 
     rightAnswers ++;
 
-    if (MainActivity.SetNextQuestion()){
+    if (MainActivity.SetNextQuestion(true)){
 
         let questionCardInner = document.querySelector("#card_question_inner_container");
 
@@ -80,7 +80,7 @@ document.querySelector("#btn_wrong_answer").addEventListener("click", function()
 
     wrongAnswers ++;
 
-    if (MainActivity.SetNextQuestion()){
+    if (MainActivity.SetNextQuestion(false)){
 
         let questionCardInner = document.querySelector("#card_question_inner_container");
 

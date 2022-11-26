@@ -5,21 +5,21 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.Comparator;
@@ -185,9 +185,14 @@ public class MainActivity extends AppCompatActivity {
     @JavascriptInterface
     public void ShowPlayCardContent(String cardId){
 
+        if (studyingCardsMap.get(cardId).getTargetQuestions() == 0 ){
+            return;
+        }
+
         playingCardId = cardId;
         playingQuestionIndex = 0;
         SortStudyingQuestionList(cardId);
+        SetStudyingCardCurrentPlay(cardId);
 
         webViewContent.post(new Runnable() {
             @Override
@@ -237,11 +242,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @JavascriptInterface
-    public boolean SetNextQuestion(){
+    public boolean SetNextQuestion(boolean answeredRight){
 
         StudyingCard playingCard = GetPlayingCard();
-        playingCard.getStudyingQuestionsList().get(playingQuestionIndex).setTargetOrder(0);
+        StudyingQuestion studyingQuestion =  playingCard.getStudyingQuestionsList().get(playingQuestionIndex);
+        studyingQuestion.setTargetOrder(0);
         SetStudyingCardTargetQuestions();
+
+        if (answeredRight){
+            SetStudyingCardPlayQuestionRight(studyingQuestion.getId());
+        }
+        else{
+            SetStudyingCardPlayQuestionWrong(studyingQuestion.getId());
+        }
+
         playingQuestionIndex ++;
 
         if (GetTargetQuestionsRemaining() > 0 &&
@@ -249,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         else{
+            SetStudyingCardPlayFinished();
             return false;
         }
     }
@@ -257,6 +272,44 @@ public class MainActivity extends AppCompatActivity {
 
         int targetQuestions = GetPlayingCard().getStudyingQuestionsList().stream().filter(e -> e.getTargetOrder() != 0).collect(Collectors.toList()).size();
         GetPlayingCard().setTargetQuestions(targetQuestions);
+    }
+
+    private void SetStudyingCardPlayQuestionRight(String questionId){
+
+        StudyingCardPlay studyingCardPlay = GetPlayingCardCurrentPlay();
+        studyingCardPlay.getRightAnswers().add(questionId);
+    }
+
+    private void SetStudyingCardPlayQuestionWrong(String questionId){
+
+        StudyingCardPlay studyingCardPlay = GetPlayingCardCurrentPlay();
+        studyingCardPlay.getWrongAnswers().add(questionId);
+    }
+
+    private void SetStudyingCardCurrentPlay(String cardId){
+
+        StudyingCard studyingCard = studyingCardsMap.get(cardId);
+
+        if (studyingCard.getStudyingCardPlaysList() == null){
+
+            studyingCard.setStudyingCardPlaysList(new ArrayList<>());
+            studyingCard.getStudyingCardPlaysList().add(new StudyingCardPlay());
+        }
+        else{
+            List<StudyingCardPlay> studyingCardPlaysList = studyingCard.getStudyingCardPlaysList();
+            StudyingCardPlay lastStudyingCardPlay = studyingCardPlaysList.get(studyingCardPlaysList.size() - 1);
+
+            if (lastStudyingCardPlay.isFinished()){
+                studyingCardPlaysList.add(new StudyingCardPlay());
+            }
+        }
+    }
+
+    private void SetStudyingCardPlayFinished(){
+
+        StudyingCardPlay studyingCardPlay = GetPlayingCardCurrentPlay();
+        studyingCardPlay.setFinished(true);
+        studyingCardPlay.setFinishedWhen(Timestamp.now());
     }
 
     @JavascriptInterface
@@ -280,7 +333,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 
     //endregion
 
@@ -354,6 +406,15 @@ public class MainActivity extends AppCompatActivity {
         return studyingQuestionId;
     }
 
+    private StudyingCardPlay GetPlayingCardCurrentPlay(){
+
+        StudyingCard studyingCard = GetPlayingCard();
+        List<StudyingCardPlay> studyingCardPlaysList = studyingCard.getStudyingCardPlaysList();
+        StudyingCardPlay studyingCardPlay = studyingCardPlaysList.get(studyingCardPlaysList.size() - 1);
+
+        return studyingCardPlay;
+    }
+
     @JavascriptInterface
     public int GetPlayingQuestionIndex(){
         return playingQuestionIndex;
@@ -368,7 +429,6 @@ public class MainActivity extends AppCompatActivity {
 
         return questionJson;
     }
-
 
 
     // endregion
@@ -486,7 +546,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // endregion
-
 
 
 }
