@@ -29,22 +29,6 @@ document.querySelector("#select_category").addEventListener("change", function(e
     MainActivity.FilterStudyingCards(selectCategories.selectedOptions[0].innerHTML);
 });
 
-document.querySelector("#btn_schedule").addEventListener("click", function(){
-
-    highLightBtnMarker("btn_schedule_marker");
-})
-
-document.querySelector("#btn_study_card").addEventListener("click", function(){
-
-    highLightBtnMarker("btn_study_card_marker");
-})
-
-document.querySelector("#btn_analytics").addEventListener("click", function(){
-
-    highLightBtnMarker("btn_analytics_marker");
-})
-
-
 function updateCategoryOptions(){
 
     let selectCategory = document.querySelector("#select_category");

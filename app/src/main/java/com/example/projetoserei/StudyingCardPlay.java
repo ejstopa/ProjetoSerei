@@ -2,7 +2,6 @@ package com.example.projetoserei;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.ServerTimestamp;
-import com.google.type.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +10,11 @@ public class StudyingCardPlay {
 
     @ServerTimestamp
     private Timestamp StartedWhen = Timestamp.now();
-    private boolean finished;
+    private boolean Finished;
     @ServerTimestamp
     private Timestamp FinishedWhen;
-    private List<String> rightAnswers = new ArrayList<>();
-    private List<String> wrongAnswers = new ArrayList<>();
+    private List<String> RightAnswers = new ArrayList<>();
+    private List<String> WrongAnswers = new ArrayList<>();
 
     public StudyingCardPlay() {
     }
@@ -29,11 +28,11 @@ public class StudyingCardPlay {
     }
 
     public boolean isFinished() {
-        return finished;
+        return Finished;
     }
 
     public void setFinished(boolean finished) {
-        this.finished = finished;
+        this.Finished = finished;
     }
 
     public Timestamp getFinishedWhen() {
@@ -45,18 +44,18 @@ public class StudyingCardPlay {
     }
 
     public List<String> getRightAnswers() {
-        return rightAnswers;
+        return RightAnswers;
     }
 
     public void setRightAnswers(List<String> rightAnswers) {
-        this.rightAnswers = rightAnswers;
+        this.RightAnswers = rightAnswers;
     }
 
     public List<String> getWrongAnswers() {
-        return wrongAnswers;
+        return WrongAnswers;
     }
 
     public void setWrongAnswers(List<String> wrongAnswers) {
-        this.wrongAnswers = wrongAnswers;
+        this.WrongAnswers = wrongAnswers;
     }
 }

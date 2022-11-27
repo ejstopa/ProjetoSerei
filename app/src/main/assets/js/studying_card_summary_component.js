@@ -26,7 +26,6 @@ cardTemplate.innerHTML = `
                     <ul class="dropdown-menu">
                         <li><a href="" class="dropdown-item" id="btn_edit_card">Editar baralho</a></li>
                         <li><a href="" class="dropdown-item" id="btn_card_statistics">Ver estatísticas</a></li>
-                        <li><a href="" class="dropdown-item" id="btn_delete_card">Excluir baralho</a></li>
                     </ul>
                 </div>
             </div>

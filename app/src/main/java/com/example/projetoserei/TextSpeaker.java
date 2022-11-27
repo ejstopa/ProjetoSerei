@@ -25,9 +25,9 @@ public class TextSpeaker {
 
     }
 
-    public void Speak(String text){
+    public int Speak(String text){
 
-        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+        return textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
 
     }
 
